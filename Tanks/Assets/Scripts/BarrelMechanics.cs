@@ -32,7 +32,7 @@ public class BarrelMechanics : MonoBehaviour
         Vector2 direction = mousePos - itemPos;
 
         GameObject newRocket = Instantiate(rocket, rocketSpawn.transform.position, transform.rotation);
-        newRocket.GetComponent<Rigidbody2D>().velocity = direction * rocketSpeed;
+        newRocket.GetComponent<Rigidbody2D>().velocity = direction.normalized * rocketSpeed;
 
         Destroy(newRocket, 3f);
     }
