@@ -11,8 +11,9 @@ public class Rocket : MonoBehaviour
     [SerializeField] private float ExplosionRadius = 5;
     Collider2D[] inExplosionRadius = null;
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
+        if (!(other.CompareTag("Player")))
             StartCoroutine(RunExplosion());
     }
 

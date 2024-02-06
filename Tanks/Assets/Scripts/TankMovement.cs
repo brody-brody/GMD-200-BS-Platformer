@@ -25,19 +25,33 @@ public class TankMovement : MonoBehaviour
     {
         Flip();
 
-        moveVector = new Vector2(Input.GetAxisRaw("Horizontal"), rb.velocity.y);
         horizontal = Input.GetAxisRaw("Horizontal");
     }
 
     void FixedUpdate()
     {
-        rb.velocity = moveVector * movementSpeed;
+        moveVector = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
+        MoveTank(moveVector);
+        CapSpeed();
+
+        Debug.Log("VelX: " + rb.velocity.x + " VelY: " + rb.velocity.y);
+    }
+
+    void MoveTank(Vector2 input)
+    {
+        rb.AddForce(input * movementSpeed);
+    }
+
+    void CapSpeed()
+    {
         if (rb.velocity.x > maxSpeedX)
         {
-
             rb.velocity = new Vector2(maxSpeedX, rb.velocity.y);
         }
-
+        else if (rb.velocity.x < -maxSpeedX)
+        {
+            rb.velocity = new Vector2(-maxSpeedX, rb.velocity.y);
+        }
     }
 
     private void Flip()

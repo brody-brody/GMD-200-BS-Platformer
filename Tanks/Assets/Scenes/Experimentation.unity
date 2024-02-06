@@ -571,7 +571,7 @@ GameObject:
   - component: {fileID: 1524981062}
   m_Layer: 6
   m_Name: TankParent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -664,10 +664,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 0.3
+  m_AngularDrag: 0.3
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: a5f4e308e4239e042918036560980d7e, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -690,8 +690,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df252e6021db8f49980ef6674e52f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  maxSpeedX: 20
+  movementSpeed: 50
+  maxSpeedX: 10
   tankBody: {fileID: 1053843445}
   tankBodyNormal: {fileID: 21300000, guid: f0278ee16e8656c4caf174837931f458, type: 3}
   tankBodyFlipped: {fileID: 21300000, guid: a7959fa417809464dbb924ff3e997be6, type: 3}
@@ -980,7 +980,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a5f4e308e4239e042918036560980d7e, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
