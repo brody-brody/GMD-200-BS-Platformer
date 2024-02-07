@@ -23,14 +23,17 @@ public class Rocket : MonoBehaviour
 
         foreach (Collider2D other in inExplosionRadius)
         {
-            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
-            if (rb != null)
+            if (!(other.CompareTag("Projectile")))
             {
-                Vector2 distance = other.transform.position - transform.position;
-                if (distance.magnitude > 0)
+                Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+                if (rb != null)
                 {
-                    float explosionForce = ExplosionForceMulti / distance.magnitude;
-                    rb.AddForce(distance.normalized * explosionForce);
+                    Vector2 distance = other.transform.position - transform.position;
+                    if (distance.magnitude > 0)
+                    {
+                        float explosionForce = ExplosionForceMulti / distance.magnitude;
+                        rb.AddForce(distance.normalized * explosionForce);
+                    }
                 }
             }
         }
@@ -46,7 +49,7 @@ public class Rocket : MonoBehaviour
         Color transparent = new Color(0f, 0f, 0f, 0f);
         Explode();
         gameObject.GetComponent<SpriteRenderer>().color = transparent;
-        gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         Destroy(gameObject, 0.5f);
 
         yield return null;

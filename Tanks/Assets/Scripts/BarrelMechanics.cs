@@ -7,16 +7,20 @@ public class BarrelMechanics : MonoBehaviour
     [SerializeField] private GameObject rocket;
     [SerializeField] private GameObject rocketSpawn;
     [SerializeField] private float rocketSpeed;
+    [SerializeField] private float shootDelay = 0.5f;
+    private bool delay = false;
+
     void Update()
     {
         FollowMouse();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !delay)
         {
             Shoot();
+            StartCoroutine(ShootDelay());
         }
     }
-
+    
     void FollowMouse()
     {
         Vector2 itemPos = transform.position;
@@ -35,5 +39,12 @@ public class BarrelMechanics : MonoBehaviour
         newRocket.GetComponent<Rigidbody2D>().velocity = direction.normalized * rocketSpeed;
 
         Destroy(newRocket, 3f);
+    }
+
+    IEnumerator ShootDelay()
+    {
+        delay = true;
+        yield return new WaitForSeconds(shootDelay);
+        delay = false;
     }
 }
