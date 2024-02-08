@@ -287,7 +287,7 @@ MonoBehaviour:
   rocket: {fileID: 687519987875927065, guid: 56568bbf42ab1fc46a0aed9ee28219df, type: 3}
   rocketSpawn: {fileID: 413824253}
   rocketSpeed: 25
-  shootDelay: 0.5
+  shootDelay: 0.3
 --- !u!1 &821142950
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,8 +694,11 @@ MonoBehaviour:
   movementSpeed: 75
   maxSpeedX: 10
   tankBody: {fileID: 1053843445}
+  groundMap: {fileID: 2103651866}
   tankBodyNormal: {fileID: 21300000, guid: f0278ee16e8656c4caf174837931f458, type: 3}
   tankBodyFlipped: {fileID: 21300000, guid: a7959fa417809464dbb924ff3e997be6, type: 3}
+  friction: {fileID: 6200000, guid: a5f4e308e4239e042918036560980d7e, type: 2}
+  frictionless: {fileID: 6200000, guid: ce762eb4905fb65449d76e0f389bacf8, type: 2}
 --- !u!1 &1857834687
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,7 +1008,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: a5f4e308e4239e042918036560980d7e, type: 2}
+  m_Material: {fileID: 6200000, guid: ce762eb4905fb65449d76e0f389bacf8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
