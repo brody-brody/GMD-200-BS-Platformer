@@ -14,6 +14,7 @@ public class TankMovement : MonoBehaviour
     [SerializeField] private PhysicsMaterial2D friction, frictionless;
 
     public static bool grounded = false;
+    public bool frictionCheck = false;
     private bool materialDelay = false;
     private SpriteRenderer tankBodySpr;
     private Rigidbody2D rb;
@@ -30,6 +31,7 @@ public class TankMovement : MonoBehaviour
     {
         Flip();
 
+        Debug.Log(grounded);
         horizontal = Input.GetAxisRaw("Horizontal");
     }
 
@@ -52,6 +54,7 @@ public class TankMovement : MonoBehaviour
             if (normal == Vector3.up)
             {
                 StartCoroutine(MaterialDelay());
+                grounded = true;
             }
         }
     }
@@ -68,10 +71,22 @@ public class TankMovement : MonoBehaviour
                 groundMap.GetComponent<Rigidbody2D>().sharedMaterial = friction;
                 materialDelay = false;
             }
-            if (rb.velocity.y < 0.1f)
+            if ((normal == Vector3.right || normal == Vector3.left) && frictionCheck)
             {
-                Debug.Log("real af");
+                gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+                gameObject.GetComponent<PolygonCollider2D>().enabled = true;
+                frictionCheck = false;
+            }
+
+            ContactPoint2D[] contacts = new ContactPoint2D[10];
+            int numContacts = rb.GetContacts(contacts);
+            Debug.Log(numContacts);
+
+            if (numContacts == 6)
+            {
                 groundMap.GetComponent<Rigidbody2D>().sharedMaterial = friction;
+                gameObject.GetComponent<PolygonCollider2D>().enabled = false;
+                gameObject.GetComponent<PolygonCollider2D>().enabled = true;
             }
         }
     }

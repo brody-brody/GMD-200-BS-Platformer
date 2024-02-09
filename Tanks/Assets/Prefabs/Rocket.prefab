@@ -173,3 +173,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExplosionForceMulti: 1500
   ExplosionRadius: 5
+  explodeParticle: {fileID: 5413717742045008745, guid: 5d1dec47f95ceb84f95c162c42549bd4, type: 3}

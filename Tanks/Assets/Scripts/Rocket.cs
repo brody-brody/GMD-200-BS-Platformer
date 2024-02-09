@@ -9,12 +9,16 @@ public class Rocket : MonoBehaviour
 {
     [SerializeField] private float ExplosionForceMulti = 5;
     [SerializeField] private float ExplosionRadius = 5;
+    [SerializeField] private GameObject explodeParticle;
     Collider2D[] inExplosionRadius = null;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (!(other.CompareTag("Player")))
+        {
             StartCoroutine(RunExplosion());
+            Instantiate(explodeParticle, transform.position, Quaternion.identity);
+        }
     }
 
     void Explode()
