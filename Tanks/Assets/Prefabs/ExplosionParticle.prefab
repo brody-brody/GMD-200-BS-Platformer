@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1333337865625368411}
   - component: {fileID: 7871003013486317306}
   m_Layer: 0
-  m_Name: Dynamite Particle
+  m_Name: ExplosionParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

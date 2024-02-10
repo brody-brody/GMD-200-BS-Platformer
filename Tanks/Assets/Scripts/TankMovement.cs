@@ -9,6 +9,7 @@ public class TankMovement : MonoBehaviour
     [SerializeField] private float frictionDelay = 0.25f;
     [SerializeField] private GameObject tankBody;
     [SerializeField] private GameObject groundMap;
+    [SerializeField] private GameObject tankTreads;
     [SerializeField] private Sprite tankBodyNormal;
     [SerializeField] private Sprite tankBodyFlipped;
     [SerializeField] private PhysicsMaterial2D friction, frictionless;
@@ -25,14 +26,15 @@ public class TankMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         tankBodySpr = tankBody.GetComponent<SpriteRenderer>();
+        groundMap = GameObject.FindWithTag("Ground");
     }
 
     void Update()
     {
         Flip();
 
-        Debug.Log(grounded);
         horizontal = Input.GetAxisRaw("Horizontal");
+        tankTreads.GetComponent<Animator>().SetFloat("Speed", Mathf.Abs(horizontal));
     }
 
     void FixedUpdate()
@@ -82,7 +84,7 @@ public class TankMovement : MonoBehaviour
             int numContacts = rb.GetContacts(contacts);
             Debug.Log(numContacts);
 
-            if (numContacts == 6)
+            if (numContacts == 6 || numContacts == 8)
             {
                 groundMap.GetComponent<Rigidbody2D>().sharedMaterial = friction;
                 gameObject.GetComponent<PolygonCollider2D>().enabled = false;
@@ -138,10 +140,12 @@ public class TankMovement : MonoBehaviour
         if (horizontal < 0f)
         {
             tankBodySpr.sprite = tankBodyFlipped;
+            tankTreads.GetComponent<SpriteRenderer>().flipX = true;
         }
         if (horizontal > 0f)
         {
             tankBodySpr.sprite = tankBodyNormal;
+            tankTreads.GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 }

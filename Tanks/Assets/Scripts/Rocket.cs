@@ -27,7 +27,7 @@ public class Rocket : MonoBehaviour
 
         foreach (Collider2D other in inExplosionRadius)
         {
-            if (!(other.CompareTag("Projectile")))
+            if (!(other.CompareTag("Projectile")) && !(other.CompareTag("PushBlock")))
             {
                 Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
                 if (rb != null)

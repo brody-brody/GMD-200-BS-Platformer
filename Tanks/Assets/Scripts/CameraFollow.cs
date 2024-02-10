@@ -10,8 +10,10 @@ public class SmoothCamera : MonoBehaviour
 
     [SerializeField] private Transform tank;
 
-
-    // Update is called once per frame
+    void Awake()
+    {
+        tank = (GameObject.FindWithTag("Player")).transform;
+    }
     void Update()
     {
         Vector3 tankPosition = tank.position + offset;
