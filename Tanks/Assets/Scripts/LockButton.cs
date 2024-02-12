@@ -5,9 +5,11 @@ using UnityEngine;
 public class LockButton : MonoBehaviour
 {
     [SerializeField] private Sprite unpressed, pressed;
+    public static bool buttonPressed = false;
     private GameObject player;
     private GameObject pushBlock;
     private int triggers = 0;
+
 
     void Awake()
     {
@@ -26,7 +28,7 @@ public class LockButton : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = pressed;
             triggers++;
-            Debug.Log("entered");
+            buttonPressed = true;
         }
     }
 
@@ -35,10 +37,12 @@ public class LockButton : MonoBehaviour
         if (other.gameObject == player || other.gameObject == pushBlock)
         {
             if (triggers == 1)
+            {
                 gameObject.GetComponent<SpriteRenderer>().sprite = unpressed;
+                buttonPressed = false;
+            }
 
             triggers--;
-            Debug.Log("exited");
         }
     }
 }
