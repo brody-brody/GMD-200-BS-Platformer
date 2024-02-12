@@ -26,6 +26,7 @@ public class LockButton : MonoBehaviour
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = pressed;
             triggers++;
+            Debug.Log("entered");
         }
     }
 
@@ -37,6 +38,7 @@ public class LockButton : MonoBehaviour
                 gameObject.GetComponent<SpriteRenderer>().sprite = unpressed;
 
             triggers--;
+            Debug.Log("exited");
         }
     }
 }

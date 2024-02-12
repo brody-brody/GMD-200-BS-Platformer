@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Explosions moving other objects in scene adapted from
 // https://www.youtube.com/watch?v=mbX4FbDhx30 (60 Seconds Tutorial | Explosions (Physics Based) | Unity 2D)
@@ -36,7 +37,14 @@ public class Rocket : MonoBehaviour
                     if (distance.magnitude > 0)
                     {
                         float explosionForce = ExplosionForceMulti / distance.magnitude;
-                        rb.AddForce(distance.normalized * explosionForce);
+
+                        if (SceneManager.GetActiveScene().name == "Title Menu")
+                        {
+                            Debug.Log("title");
+                            rb.AddForce(distance.normalized * explosionForce * 2);
+                        }
+                        else
+                            rb.AddForce(distance.normalized * explosionForce);
                     }
                 }
             }

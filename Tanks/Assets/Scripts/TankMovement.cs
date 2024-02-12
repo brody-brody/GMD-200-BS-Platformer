@@ -82,7 +82,7 @@ public class TankMovement : MonoBehaviour
 
             ContactPoint2D[] contacts = new ContactPoint2D[10];
             int numContacts = rb.GetContacts(contacts);
-            Debug.Log(numContacts);
+            //Debug.Log(numContacts);
 
             if (numContacts == 6 || numContacts == 8)
             {
