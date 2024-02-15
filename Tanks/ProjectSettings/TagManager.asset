@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - PushBlock
   - Play
+  - Pause
   layers:
   - Default
   - TransparentFX

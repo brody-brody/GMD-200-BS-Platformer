@@ -137,15 +137,18 @@ public class TankMovement : MonoBehaviour
     // Flips the tank sprite based on the players last horizontal input
     private void Flip()
     {
-        if (horizontal < 0f)
+        if (!GameManager.paused)
         {
-            tankBodySpr.sprite = tankBodyFlipped;
-            tankTreads.GetComponent<SpriteRenderer>().flipX = true;
-        }
-        if (horizontal > 0f)
-        {
-            tankBodySpr.sprite = tankBodyNormal;
-            tankTreads.GetComponent<SpriteRenderer>().flipX = false;
+            if (horizontal < 0f)
+            {
+                tankBodySpr.sprite = tankBodyFlipped;
+                tankTreads.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            if (horizontal > 0f)
+            {
+                tankBodySpr.sprite = tankBodyNormal;
+                tankTreads.GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
     }
 }
