@@ -36,7 +36,7 @@ public class Clicking : MonoBehaviour
             {
                 playSpr.sprite = clickPlay;
                 playButton.transform.position += new Vector3(0, -0.35f, 0);
-                SceneManager.LoadScene("Tutorial");
+                SceneManager.LoadScene("Level1");
             }
         }
     }

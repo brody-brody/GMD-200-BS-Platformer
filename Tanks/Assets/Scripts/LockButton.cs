@@ -6,16 +6,7 @@ public class LockButton : MonoBehaviour
 {
     [SerializeField] private Sprite unpressed, pressed;
     public static bool buttonPressed = false;
-    private GameObject player;
-    private GameObject pushBlock;
     private int triggers = 0;
-
-
-    void Awake()
-    {
-        player = GameObject.FindWithTag("Player");
-        pushBlock = GameObject.FindWithTag("PushBlock");
-    }
 
     void Update()
     {
@@ -24,7 +15,7 @@ public class LockButton : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject == player || other.gameObject == pushBlock)
+        if (other.CompareTag("Player") || other.CompareTag("PushBlock") || other.CompareTag("Block"))
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = pressed;
             triggers++;
@@ -34,7 +25,7 @@ public class LockButton : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject == player || other.gameObject == pushBlock)
+        if (other.CompareTag("Player") || other.CompareTag("PushBlock") || other.CompareTag("Block"))
         {
             if (triggers == 1)
             {
