@@ -32,14 +32,14 @@ public class GameManager : MonoBehaviour
 
     void Pause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !paused)
+        if (Input.GetKeyDown(KeyCode.Escape) && !paused && Clicking.started)
         {
             dimScreen.enabled = true;
             pauseMenu.enabled = true;
             Time.timeScale = 0f;
             paused = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && paused)
+        else if (Input.GetKeyDown(KeyCode.Escape) && paused && Clicking.started)
         {
             Time.timeScale = 1f;
             dimScreen.enabled = false;

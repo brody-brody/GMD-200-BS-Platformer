@@ -9,6 +9,7 @@ public class Clicking : MonoBehaviour
     private SpriteRenderer playSpr;
     public Sprite clickPlay;
     public bool mouseClick;
+    public static bool started = false;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class Clicking : MonoBehaviour
             {
                 playSpr.sprite = clickPlay;
                 playButton.transform.position += new Vector3(0, -0.35f, 0);
+                started = true;
                 SceneManager.LoadScene("Level1");
             }
         }
