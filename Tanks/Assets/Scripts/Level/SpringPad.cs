@@ -15,7 +15,6 @@ public class SpringPad : MonoBehaviour
 
             if (normal == Vector3.down)
             {
-                Debug.Log("bounce");
                 other.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(other.gameObject.GetComponent<Rigidbody2D>().velocity.x, 0f);
                 other.gameObject.GetComponent<Rigidbody2D>().AddForce(upwardForce);
             }

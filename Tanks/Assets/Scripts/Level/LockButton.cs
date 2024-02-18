@@ -8,11 +8,6 @@ public class LockButton : MonoBehaviour
     public static bool buttonPressed = false;
     private int triggers = 0;
 
-    void Update()
-    {
-        Debug.Log(triggers);
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") || other.CompareTag("PushBlock") || other.CompareTag("Block"))

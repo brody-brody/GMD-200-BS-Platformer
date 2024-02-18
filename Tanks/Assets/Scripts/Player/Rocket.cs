@@ -40,7 +40,6 @@ public class Rocket : MonoBehaviour
 
                         if (SceneManager.GetActiveScene().name == "Title Menu")
                         {
-                            Debug.Log("title");
                             rb.AddForce(distance.normalized * explosionForce * 2);
                         }
                         else

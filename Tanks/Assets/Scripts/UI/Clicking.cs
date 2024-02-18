@@ -30,7 +30,6 @@ public class Clicking : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D other)
     {
-        Debug.Log("trigger");
         if (other.CompareTag("Play"))
         {
             if (mouseClick)
