@@ -471,10 +471,6 @@ PolygonCollider2D:
       - {x: -1.5, y: -0.5}
       - {x: -1.5, y: -1.4}
       - {x: 1.5, y: -1.4}
-      - {x: 1.5, y: -1.4}
-      - {x: 1.5, y: -1.4}
-      - {x: 1.5, y: -1.4}
-      - {x: 1.5, y: -1.4}
   m_UseDelaunayMesh: 0
 --- !u!114 &5869322997555657257
 MonoBehaviour:
@@ -488,7 +484,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0df252e6021db8f49980ef6674e52f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 75
   maxSpeedX: 10
   frictionDelay: 0.25
   tankBody: {fileID: 6834972231382964993}

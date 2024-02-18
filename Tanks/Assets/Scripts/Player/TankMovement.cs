@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TankMovement : MonoBehaviour
 {
-    [SerializeField] private float movementSpeed = 10f;
+    [SerializeField] private static float movementSpeed = 10f;
     [SerializeField] private float maxSpeedX = 20f;
     [SerializeField] private float frictionDelay = 0.25f;
     [SerializeField] private GameObject tankBody;
@@ -18,7 +18,7 @@ public class TankMovement : MonoBehaviour
     public bool frictionCheck = false;
     private bool materialDelay = false;
     private SpriteRenderer tankBodySpr;
-    private Rigidbody2D rb;
+    private static Rigidbody2D rb;
     private Vector2 moveVector;
     private float horizontal;
 
@@ -59,6 +59,11 @@ public class TankMovement : MonoBehaviour
                 grounded = true;
             }
         }
+
+        if (other.gameObject.CompareTag("MovingPlatform"))
+        {
+            
+        }
     }
 
     void OnCollisionStay2D(Collision2D other)
@@ -82,7 +87,6 @@ public class TankMovement : MonoBehaviour
 
             ContactPoint2D[] contacts = new ContactPoint2D[10];
             int numContacts = rb.GetContacts(contacts);
-            //Debug.Log(numContacts);
 
             if (numContacts == 6 || numContacts == 8)
             {
@@ -98,6 +102,11 @@ public class TankMovement : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             grounded = false;
+        }
+
+        if (other.gameObject.CompareTag("MovingPlatform"))
+        {
+            
         }
     }
 
