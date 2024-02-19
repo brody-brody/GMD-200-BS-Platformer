@@ -11,6 +11,7 @@ public class DoorManager : MonoBehaviour
         ButtonCheck();
     }
 
+    // if the button is pressed, remove the door
     void ButtonCheck()
     {
         if (LockButton.buttonPressed)

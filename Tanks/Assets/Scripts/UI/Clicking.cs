@@ -18,6 +18,7 @@ public class Clicking : MonoBehaviour
 
     void Update()
     {
+        // make the small gameobject follow the mouse cursor
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;
         transform.position = mousePosition;
@@ -32,6 +33,7 @@ public class Clicking : MonoBehaviour
     {
         if (other.CompareTag("Play"))
         {
+            // if you click while you are over the play button, you will enter the scene and play the game
             if (mouseClick)
             {
                 playSpr.sprite = clickPlay;
@@ -42,6 +44,7 @@ public class Clicking : MonoBehaviour
         }
     }
 
+    // prevent click spamming as to not mess up the button
     IEnumerator ClickDelay()
     {
         mouseClick = true;

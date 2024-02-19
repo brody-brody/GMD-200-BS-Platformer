@@ -14,6 +14,8 @@ public class SmoothCamera : MonoBehaviour
     {
         tank = (GameObject.FindWithTag("Player")).transform;
     }
+
+    // camera will follow the player by a set offset using smoothdamp
     void Update()
     {
         Vector3 tankPosition = tank.position + offset;

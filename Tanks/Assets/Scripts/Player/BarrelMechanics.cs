@@ -14,6 +14,7 @@ public class BarrelMechanics : MonoBehaviour
     {
         FollowMouse();
 
+        // if you left click and are not on delay
         if (Input.GetMouseButtonDown(0) && !delay)
         {
             Shoot();
@@ -23,8 +24,11 @@ public class BarrelMechanics : MonoBehaviour
     
     void FollowMouse()
     {
+        // as long as you are not paused
         if (!GameManager.paused)
         {
+            // the mousoe position minus the player position will give a directional vector in which the tank barrel will point
+            // in the direction of the mouse
             Vector2 itemPos = transform.position;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = mousePos - itemPos;
@@ -34,12 +38,16 @@ public class BarrelMechanics : MonoBehaviour
 
     void Shoot()
     {
+        // as long as you arent paused
         if (!GameManager.paused)
         {
+            // obtaining direction vector, exact same as FollowMouse()
             Vector2 itemPos = transform.position;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 direction = mousePos - itemPos;
 
+            // instantiate a new rocket with velocity
+            // direction is normalized to keep velocity consistent no matter the original magnitude of the vector
             GameObject newRocket = Instantiate(rocket, rocketSpawn.transform.position, transform.rotation);
             newRocket.GetComponent<Rigidbody2D>().velocity = direction.normalized * rocketSpeed;
 
@@ -47,6 +55,7 @@ public class BarrelMechanics : MonoBehaviour
         }
     }
 
+    // simple delay
     IEnumerator ShootDelay()
     {
         delay = true;

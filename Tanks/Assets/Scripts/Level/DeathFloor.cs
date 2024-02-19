@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class DeathFloor : MonoBehaviour
 {
+
+    // if player enters the death floor trigger, restart the scene
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

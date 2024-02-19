@@ -33,20 +33,21 @@ public class TankMovement : MonoBehaviour
     {
         Flip();
 
+        // get input and sent it to the animator to do the treads animation
         horizontal = Input.GetAxisRaw("Horizontal");
         tankTreads.GetComponent<Animator>().SetFloat("Speed", Mathf.Abs(horizontal));
     }
 
     void FixedUpdate()
     {
+        // run physics based functions in fixed update :)
         moveVector = new Vector2(Input.GetAxisRaw("Horizontal"), 0f);
         MoveTank(moveVector);
         CapSpeed();
         AirControl();
-
-        //Debug.Log("VelX: " + rb.velocity.x + " VelY: " + rb.velocity.y);
     }
 
+    // if youve collided with the ground, make sure there is friction
     void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
@@ -59,13 +60,9 @@ public class TankMovement : MonoBehaviour
                 grounded = true;
             }
         }
-
-        if (other.gameObject.CompareTag("MovingPlatform"))
-        {
-            
-        }
     }
 
+    // while colliding with the ground, find out your normal, and set the correct material type to the tilemap
     void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
@@ -78,6 +75,7 @@ public class TankMovement : MonoBehaviour
                 groundMap.GetComponent<Rigidbody2D>().sharedMaterial = friction;
                 materialDelay = false;
             }
+            // reloading collider because unity is strange
             if ((normal == Vector3.right || normal == Vector3.left) && frictionCheck)
             {
                 gameObject.GetComponent<PolygonCollider2D>().enabled = false;
@@ -85,10 +83,12 @@ public class TankMovement : MonoBehaviour
                 frictionCheck = false;
             }
 
+            // testing number of contacts so that if you run in a corner and fire up,
+            // the ground will not stay frictionless when you come down
             ContactPoint2D[] contacts = new ContactPoint2D[10];
             int numContacts = rb.GetContacts(contacts);
 
-            if (numContacts == 6 || numContacts == 8)
+            if (numContacts >= 6)
             {
                 groundMap.GetComponent<Rigidbody2D>().sharedMaterial = friction;
                 gameObject.GetComponent<PolygonCollider2D>().enabled = false;
@@ -97,16 +97,12 @@ public class TankMovement : MonoBehaviour
         }
     }
 
+    // grounded is false if youve left the ground
     void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Ground"))
         {
             grounded = false;
-        }
-
-        if (other.gameObject.CompareTag("MovingPlatform"))
-        {
-            
         }
     }
 
